@@ -9,7 +9,7 @@ server:
     glog_open: 0
     jwt_key: "testKey"
   log:
-    level: 'Error'
+    level: 'Debug'
     local: './log/data_proxy.log'
   stat:
     tick_time: 0.1s
