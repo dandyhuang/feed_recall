@@ -1,0 +1,52 @@
+server:
+  http:
+    addr: '0.0.0.0:9110'
+    timeout: 1s
+    prometheus: '1'
+  grpc:
+    addr: '0.0.0.0:9000'
+    timeout: 0.5s
+    glog_open: 0
+    jwt_key: "testKey"
+  log:
+    level: 'Error'
+    local: './log/data_proxy.log'
+  stat:
+    tick_time: 0.1s
+    client_timeout: 5s
+
+common_prometheus:
+  rule_id: 153248
+data:
+  database:
+    driver: mysql
+    source: 'root:root@tcp(127.0.0.1:3306)/test'
+    push_addr: '10.193.71.140:9090'
+  redis:
+    - table_name: 'appstore_update_push_new'
+      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+    - table_name: 'rtrs_appstore_recomm_download'
+      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+    - table_name: 'appstore_search_no_result'
+      addr: 'dm.recommend001.redis.vivo.lan:11103'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+    - table_name: 'apptag_taplist_cache_config'
+      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+    - table_name: 'rtrs_appstore_push_message_ranking'
+      addr: 'product-recall-03-prd4.redis.dba.vivo.lan:12222,product-recall-03-prd3.redis.dba.vivo.lan:12221,product-recall-03-prd2.redis.dba.vivo.lan:12221,product-recall-03-prd1.redis.dba.vivo.lan:12222,product-recall-03-prd0.redis.dba.vivo.lan:12221'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+    - table_name: 'da_appstore_detail_recall'
+      addr: 'prodcut-rec-prd3.redis.dba.vivo.lan.:11258'
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+kratos:
+  name: 'feed_g_data_proxy'
+  version: '1.0.0'

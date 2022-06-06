@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package rank4;
+
+import "google/protobuf/any.proto";
+option go_package = "data_proxy/api/recommend;rec";
+option java_multiple_files = true;
+option java_package = "api.recommend";
+
+service  CommonService {
+	rpc process(CommonRequest) returns (CommonResponse){};
+}
+
+message CommonRequest {
+	string req_id = 1;   //请求序列号,
+	google.protobuf.Any request = 2;  //模块收到的数据，开发者自行解析。目前应当是通用的recommend.proto协议，未来可扩展为其他协议。
+	uint64 reserved = 3;  // 保留字段
+	uint64 reserved2 = 4;
+	string reserved3 = 5;
+};
+message CommonResponse {
+	uint32 ret_code = 1;  //请求返回值，框架将定义一整套请求返回错误码用于该字段。
+	google.protobuf.Any response = 2;
+	uint64 reserved = 3;  // 保留字段
+	uint64 reserved2 = 4;
+	string reserved3 = 5;
+	map<string,string> flow_info = 6;  //保存调用链中各个模块相关信息
+};
+
+message HttpRequest { };
+message HttpResponse { };
+
+service HttpService {
+	rpc process(HttpRequest) returns (HttpResponse);
+};

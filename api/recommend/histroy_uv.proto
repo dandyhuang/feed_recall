@@ -1,0 +1,18 @@
+syntax = "proto3";
+package api.recommend;
+
+option go_package = "data_proxy/api/recommend;rec";
+
+message UserInfo {
+  HistoryInfo issued_list_info = 1;       // 用户的下发历史
+  //  TODO  用户特征加到这  如 like_tag
+}
+
+message HistoryInfo {
+  repeated HistoryTerm history_term_list = 1;
+}
+
+message HistoryTerm {
+  string item_id = 1;
+  uint64 ts = 2;          // 下发/曝光 时间戳
+}
