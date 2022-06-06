@@ -122,7 +122,6 @@ func (s *StandardStat) Polymeric(conf *conf.Server_STAT, log *log.Helper) {
 					continue
 				}
 				url := "http://st-moni-business-shou.vivo.lan:8080"
-				// res, err:=cli.PostHttpData(url, body)
 				_, err = cli.PostHttpData(url, conf.ClientTimeout.AsDuration(), body, log)
 				log.Info("post body:", string(body))
 				stat = stat[:0]

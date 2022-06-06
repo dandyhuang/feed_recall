@@ -1,0 +1,14 @@
+syntax = "proto3";
+package kratos.api;
+
+option go_package = "data_proxy/internal/conf;conf";
+
+message DictInfo{
+  string name = 1;
+  string class_name = 2;
+  string path = 3;
+}
+
+message Dict {
+  repeated  DictInfo dicts = 1;
+}

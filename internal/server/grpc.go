@@ -63,19 +63,6 @@ func setTracerProvider(url string) error {
 
 // NewGRPCServer new a gRPC server.
 func NewGRPCServer(c *conf.Server, common *service.CommonService, logger log.Logger) *grpc.Server {
-	// grpc server.go中 reply, appErr := md.Handler(info.serviceImpl, ctx, df, s.opts.unaryInt)
-	// 执行拦截器
-	//head:=make(map[string]interface{})
-	//head["key"] = c.Grpc.JwtKey ,jwt.WithTokenHeader(head)
-	//url := "http://10.193.71.140:14268/api/traces"
-	//if os.Getenv("jaeger_url") != "" {
-	//	url = os.Getenv("jaeger_url")
-	//}
-	//err := setTracerProvider(url)
-	//if err != nil {
-	//	log.Error(err)
-	//}
-
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(
