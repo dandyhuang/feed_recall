@@ -3,10 +3,11 @@ package log
 import (
 	"fmt"
 	"github.com/go-kratos/kratos/v2/log"
-	"time"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"os"
+	"time"
 )
 var logger *zap.Logger
 
@@ -17,7 +18,7 @@ type ZapWriteLogger struct {
 
 // logpath 日志文件路径
 // loglevel 日志级别
-func NewZapWriteLogger(logpath string, level zap.AtomicLevel, opts ...zap.Option) *ZapWriteLogger {
+func NewZapWriteLogger(logpath string, env string, level zap.AtomicLevel, opts ...zap.Option) *ZapWriteLogger {
 	// 日志分割
 	hook := lumberjack.Logger{
 		Filename:   logpath, // 日志文件路径，默认 os.TempDir()
@@ -26,7 +27,11 @@ func NewZapWriteLogger(logpath string, level zap.AtomicLevel, opts ...zap.Option
 		MaxAge:     7,       // 保留7天，默认不限
 		Compress:   true,    // 是否压缩，默认不压缩
 	}
-	write := zapcore.AddSync(&hook)
+	var write zapcore.WriteSyncer
+	write = zapcore.AddSync(&hook)
+	if env == "test" {
+		write = zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), write)
+	}
 	encoderConfig := zapcore.EncoderConfig{
 		TimeKey:        "time",
 		LevelKey:       "level",
@@ -83,7 +88,7 @@ func (l *ZapWriteLogger) Log(level log.Level, keyvals ...interface{}) error {
 
 func main() {
 	// 历史记录日志名字为：all.log，服务重新启动，日志会追加，不会删除
-	NewZapWriteLogger("./all.log", zap.NewAtomicLevelAt(zapcore.DebugLevel),zap.AddStacktrace(
+	NewZapWriteLogger("./all.log", "pre", zap.NewAtomicLevelAt(zapcore.DebugLevel), zap.AddStacktrace(
 		zap.NewAtomicLevelAt(zapcore.ErrorLevel)),zap.AddCaller(), zap.Development())
 	// 强结构形式
 	logger.Info("test",

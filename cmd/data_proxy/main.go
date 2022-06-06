@@ -89,7 +89,9 @@ func main() {
 
 	// buildInstance 中Register会注册consul
 	Name = kt.Kratos.Name + "_" + Env
+
 	writeLogger:=logZap.NewZapWriteLogger(bc.Server.Log.Local,
+		Env,
 		zap.NewAtomicLevelAt(logLevel),
 		zap.AddStacktrace(
 			zap.NewAtomicLevelAt(zapcore.ErrorLevel)),
