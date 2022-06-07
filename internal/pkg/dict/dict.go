@@ -13,6 +13,7 @@ import (
 var (
 	// ErrNotFound is file not found.
 	ErrNotFound = errors.New("file not found")
+	ErrNotExist = errors.New("dict not exist")
 	_ Dict = (*DictBase)(nil)
 )
 

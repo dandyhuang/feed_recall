@@ -11,13 +11,7 @@ var (
 )
 
 func init() {
-	//myTypes := []interface{}{DictGcms{}}
-	//for _, v := range myTypes {
-	//	// typeRegistry["DictGcms"] = reflect.TypeOf(MyString{})
-	//	log.Info(" ====type :", v)
-	//	dict.GetRegister()[fmt.Sprintf("%T", v)] = reflect.TypeOf(v)
-	//}
-	dict.GetRegister().Set(new(DictGcms))
+	dict.GetRegister().Set("gcms", new(DictGcms))
 }
 
 type DictGcms struct {
