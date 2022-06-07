@@ -118,7 +118,7 @@ func main() {
 	log.Info("111")
 	g:=gcms.(*dict_gcms.DictGcms)
 	log.Info("222")
-	g.Init("../configs")
+	g.Init("../configs", logger)
 	log.Info("err,", err, gcms)
 	app, cleanup, err := wireApp(bc.Server, bc.Data, &rc, logger)
 	if err != nil {

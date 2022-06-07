@@ -21,7 +21,7 @@ type DictGcms struct {
 
 func (d DictGcms) Init(conf string) error {
 	d.dictData = make(map[string] interface{})
-	d.dict = new(dict.DictBase)
+	d.dict = dict.NewDict()
 	d.dict.Init(conf)
 	d.dictData["hha"] = "dfds"
 	return nil
@@ -35,10 +35,12 @@ func (d DictGcms) Close() {
 	panic("implement me")
 }
 
-func NewDict(opts ...dict.Option) dict.Dict {
+func NewDict(conf string, opts ...dict.Option) dict.Dict {
 	dict:=dict.NewDict(opts...)
+	dict.Init(conf)
 
 	return &DictGcms{
 		dict: dict,
+		dictData: make(map[string] interface{}),
 	}
 }
