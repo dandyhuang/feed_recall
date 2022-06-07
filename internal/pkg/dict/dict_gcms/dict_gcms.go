@@ -11,7 +11,7 @@ func init() {
 	myTypes := []interface{}{DictGcms{}}
 	for _, v := range myTypes {
 		// typeRegistry["DictGcms"] = reflect.TypeOf(MyString{})
-		log.Info(" type :", v)
+		log.Info(" ====type :", v)
 		dict.GetRegister()[fmt.Sprintf("%T", v)] = reflect.TypeOf(v)
 	}
 }
