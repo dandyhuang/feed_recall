@@ -16,6 +16,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
+	_ "data_proxy/internal/pkg/dict/dict_gcms"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"
