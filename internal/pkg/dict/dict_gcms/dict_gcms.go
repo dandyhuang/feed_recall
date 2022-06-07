@@ -9,6 +9,7 @@ import (
 
 func init() {
 	myTypes := []interface{}{DictGcms{}}
+	log.Info("=======")
 	for _, v := range myTypes {
 		// typeRegistry["DictGcms"] = reflect.TypeOf(MyString{})
 		log.Info(" ====type :", v)
