@@ -10,7 +10,7 @@ type TypeRegister map[string]reflect.Type
 
 func (t TypeRegister) Set(i interface{}) {
 	//name string, typ reflect.Type
-	fmt.Print("tpye set name:", reflect.TypeOf(i).Name())
+	fmt.Println("tpye set name:", reflect.TypeOf(i).Name())
 	t[reflect.TypeOf(i).Name()] = reflect.TypeOf(i)
 }
 
