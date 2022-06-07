@@ -1,11 +1,28 @@
 package dict
 
 import (
+	"errors"
+	"fmt"
 	"reflect"
 )
 
-var dictRegistry = make(map[string]reflect.Type)
+type TypeRegister map[string]reflect.Type
 
-func GetRegister() map[string]reflect.Type {
-	return dictRegistry
+func (t TypeRegister) Set(i interface{}) {
+	//name string, typ reflect.Type
+	fmt.Print("tpye set name:", reflect.TypeOf(i).Name())
+	t[reflect.TypeOf(i).Name()] = reflect.TypeOf(i)
+}
+
+func (t TypeRegister) Get(name string) (interface{}, error) {
+	if typ, ok := t[name]; ok {
+		return reflect.New(typ).Elem().Interface(), nil
+	}
+	return nil, errors.New("no one")
+}
+
+var typeReg = make(TypeRegister)
+
+func GetRegister()TypeRegister {
+	return  typeReg
 }

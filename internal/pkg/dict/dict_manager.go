@@ -45,4 +45,5 @@ func Init( log *log.Helper)  {
 	for k, v := range dict.Dicts {
 		log.Info(k, v)
 	}
+	GetRegister().Get("")
 }

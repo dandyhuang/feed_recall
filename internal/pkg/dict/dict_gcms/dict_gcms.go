@@ -2,19 +2,16 @@ package dict_gcms
 
 import (
 	"data_proxy/internal/pkg/dict"
-	"fmt"
-	"github.com/go-kratos/kratos/v2/log"
-	"reflect"
 )
 
 func init() {
-	myTypes := []interface{}{DictGcms{}}
-	log.Info("=======")
-	for _, v := range myTypes {
-		// typeRegistry["DictGcms"] = reflect.TypeOf(MyString{})
-		log.Info(" ====type :", v)
-		dict.GetRegister()[fmt.Sprintf("%T", v)] = reflect.TypeOf(v)
-	}
+	//myTypes := []interface{}{DictGcms{}}
+	//for _, v := range myTypes {
+	//	// typeRegistry["DictGcms"] = reflect.TypeOf(MyString{})
+	//	log.Info(" ====type :", v)
+	//	dict.GetRegister()[fmt.Sprintf("%T", v)] = reflect.TypeOf(v)
+	//}
+	dict.GetRegister().Set(new(DictGcms))
 }
 
 type DictGcms struct {
