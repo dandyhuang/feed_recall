@@ -111,10 +111,14 @@ func main() {
 		//"span.id", tracing.SpanID(),
 	)
 	dict.Init(log.NewHelper(logger))
-	gcms, _ :=dict.GetRegister().Get("gcms")
+	gcms, err :=dict.GetRegister().Get("gcms")
+	if err != nil {
+		log.Error(err)
+	}
+
 	g:=gcms.(*dict_gcms.DictGcms)
 	g.Init("../configs")
-	log.Info(gcms)
+	log.Info("err,", err, gcms)
 	app, cleanup, err := wireApp(bc.Server, bc.Data, &rc, logger)
 	if err != nil {
 		panic(err)

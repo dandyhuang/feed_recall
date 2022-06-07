@@ -2,6 +2,12 @@ package dict_gcms
 
 import (
 	"data_proxy/internal/pkg/dict"
+	"errors"
+)
+
+var (
+	// ErrNotFound is file not found.
+	ErrNotFound = errors.New("file not found")
 )
 
 func init() {
