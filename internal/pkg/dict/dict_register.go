@@ -12,6 +12,7 @@ func (t TypeRegister) Set(i interface{}) {
 	//name string, typ reflect.Type
 	fmt.Println("tpye set name:", reflect.TypeOf(i).Name())
 	t[reflect.TypeOf(i).Name()] = reflect.TypeOf(i)
+	fmt.Println("value：", typeReg)
 }
 
 func (t TypeRegister) Get(name string) (interface{}, error) {
