@@ -111,7 +111,7 @@ func main() {
 		//"span.id", tracing.SpanID(),
 	)
 	dict.Init(log.NewHelper(logger))
-	gcms, _ :=dict.GetRegister().Get("dict_gcms.DictGcms")
+	gcms, _ :=dict.GetRegister().Get("gcms")
 	g:=gcms.(dict_gcms.DictGcms)
 	g.Init("../configs")
 	log.Info(gcms)
