@@ -112,7 +112,7 @@ func main() {
 	)
 	dict.Init(log.NewHelper(logger))
 	gcms, _ :=dict.GetRegister().Get("gcms")
-	g:=gcms.(dict_gcms.DictGcms)
+	g:=gcms.(*dict_gcms.DictGcms)
 	g.Init("../configs")
 	log.Info(gcms)
 	app, cleanup, err := wireApp(bc.Server, bc.Data, &rc, logger)
