@@ -21,10 +21,10 @@ type Info struct {
 type Manager struct {
 	DictHash map[string]Info
 }
-func Init( log *log.Helper) {
+func update( log *log.Helper) {
 
 }
-func Update( log *log.Helper)  {
+func Init( log *log.Helper)  {
 	flag.StringVar(&dictConf, "dict", "./configs/dict.yaml", "dict eg: -dict dict.yaml")
 	log.Info("dict path:", dictConf)
 	c := config.New(
