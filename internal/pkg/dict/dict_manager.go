@@ -21,8 +21,10 @@ type Info struct {
 type Manager struct {
 	DictHash map[string]Info
 }
+func Init( log *log.Helper) {
 
-func Init( log *log.Helper)  {
+}
+func Update( log *log.Helper)  {
 	flag.StringVar(&dictConf, "dict", "./configs/dict.yaml", "dict eg: -dict dict.yaml")
 	log.Info("dict path:", dictConf)
 	c := config.New(
@@ -39,6 +41,8 @@ func Init( log *log.Helper)  {
 	if err := c.Scan(&dict); err != nil {
 		panic(err)
 	}
-
 	log.Info("dict:", dict)
+	for k, v := range dict.Dicts {
+		log.Info(k, v)
+	}
 }

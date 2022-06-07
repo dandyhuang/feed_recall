@@ -13,7 +13,7 @@ import (
 var (
 	// ErrNotFound is file not found.
 	ErrNotFound = errors.New("file not found")
-	_ Dict = (*dict)(nil)
+	_ Dict = (*DictBase)(nil)
 )
 
 type Dict interface {
@@ -22,15 +22,14 @@ type Dict interface {
 	Close()
 }
 
-type dict struct {
+type DictBase struct {
 	dictFile string
 	dictName string
 	opts      options
 	log       *log.Helper
-	dictData map[string] interface{}
 }
 
-func NewDict(opts ...Option) Dict {
+func NewDict(opts ...Option) *DictBase {
 	o := options{
 		logger:   log.GetLogger(),
 		decoder:  defaultDecoder,
@@ -39,13 +38,13 @@ func NewDict(opts ...Option) Dict {
 		opt(&o)
 	}
 
-	return &dict{
+	return &DictBase{
 		opts:   o,
 		log:    log.NewHelper(o.logger),
 	}
 }
 
-func (d dict) Init(fileName string) error {
+func (d DictBase) Init(fileName string) error {
 	_, err := os.Stat(fileName)
 	if err == nil{
 		d.log.Error("File exist")
@@ -59,7 +58,7 @@ func (d dict) Init(fileName string) error {
 	return nil
 }
 
-func (d dict) Load() bool {
+func (d DictBase) Load() bool {
 	b, err := ioutil.ReadFile(d.dictFile)
 	if err != nil {
 		return false
@@ -81,6 +80,6 @@ func (d dict) Load() bool {
 	return true
 }
 
-func (d dict) Close() {
+func (d DictBase) Close() {
 	panic("implement me")
 }
