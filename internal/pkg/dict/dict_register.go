@@ -8,6 +8,12 @@ import (
 
 type TypeRegister map[string]interface{}
 
+var typeReg = make(TypeRegister)
+
+func GetRegister() TypeRegister {
+	return  typeReg
+}
+
 func (t TypeRegister) Set(name string, i interface{}) {
 	//name string, typ reflect.Type
 	fmt.Println("tpye set name:", reflect.TypeOf(i).Name())
@@ -20,14 +26,10 @@ func (t TypeRegister) Get(name string) (interface{}, error) {
 		log.Info("k:", k , " v:", v)
 	}
 
-	if typ, ok := t[name]; ok {
-		return typ, nil
+	if val, ok := t[name]; ok {
+		return val, nil
 	}
 	return nil, ErrNotExist
 }
 
-var typeReg = make(TypeRegister)
 
-func GetRegister() TypeRegister {
-	return  typeReg
-}
