@@ -2,7 +2,6 @@ package dict
 
 import (
 	"data_proxy/internal/conf"
-	"data_proxy/internal/pkg/dict/dict_gcms"
 	"flag"
 	"github.com/go-kratos/kratos/v2/config"
 	"github.com/go-kratos/kratos/v2/config/file"
@@ -46,8 +45,5 @@ func Init( log *log.Helper)  {
 	for k, v := range dict.Dicts {
 		log.Info(k, v)
 	}
-	gcms, _ :=GetRegister().Get("dict_gcms.DictGcms")
-	g:=gcms.(dict_gcms.DictGcms)
-	g.Init("../configs")
-	log.Info(gcms)
+
 }

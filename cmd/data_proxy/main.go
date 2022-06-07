@@ -4,6 +4,7 @@ import (
 	"data_proxy/internal/conf"
 	logZap "data_proxy/internal/log"
 	"data_proxy/internal/pkg/dict"
+	"data_proxy/internal/pkg/dict/dict_gcms"
 	"data_proxy/internal/pkg/stat"
 	"flag"
 	"github.com/go-kratos/kratos/v2"
@@ -110,6 +111,10 @@ func main() {
 		//"span.id", tracing.SpanID(),
 	)
 	dict.Init(log.NewHelper(logger))
+	gcms, _ :=dict.GetRegister().Get("dict_gcms.DictGcms")
+	g:=gcms.(dict_gcms.DictGcms)
+	g.Init("../configs")
+	log.Info(gcms)
 	app, cleanup, err := wireApp(bc.Server, bc.Data, &rc, logger)
 	if err != nil {
 		panic(err)
