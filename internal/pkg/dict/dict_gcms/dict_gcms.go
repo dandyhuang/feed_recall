@@ -20,8 +20,9 @@ type DictGcms struct {
 }
 
 func (d DictGcms) Init(conf string) error {
-	panic("implement me")
+	d.dictData = make(map[string] interface{})
 	d.dict.Init(conf)
+	d.dictData["hha"] = "dfds"
 	return nil
 }
 
