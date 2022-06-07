@@ -3,6 +3,7 @@ package dict
 import (
 	"errors"
 	"fmt"
+	"github.com/go-kratos/kratos/v2/log"
 	"reflect"
 )
 
@@ -16,6 +17,10 @@ func (t TypeRegister) Set(i interface{}) {
 }
 
 func (t TypeRegister) Get(name string) (interface{}, error) {
+	for k, v := range t {
+		log.Info("k:", k , " v:", v)
+	}
+
 	if typ, ok := t[name]; ok {
 		return reflect.New(typ).Elem().Interface(), nil
 	}
