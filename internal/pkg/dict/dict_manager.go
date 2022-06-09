@@ -71,10 +71,13 @@ func updateDict(name string, isFirst bool)  {
 	// 还有校准有可能会更新
 	hash.mu.Lock()
 	defer hash.mu.Unlock()
-	index:=atomic.LoadInt32(&hash.dictIdx)
-	dict:=GetRegDict(hash.dictInfo.Name)
+	index := atomic.LoadInt32(&hash.dictIdx)
+	dict := GetRegDict(hash.dictInfo.Name)
+	log.Info("1111", dict)
 	dict.Init()
+	log.Info("1111", dict)
 	dict.Load(hash.dictInfo.Path)
+	log.Info("1111", dict)
 	changeIndex := 1 - index
 	hash.opts.dict[changeIndex] = dict
 	atomic.CompareAndSwapInt32(&hash.dictIdx, index, changeIndex)
