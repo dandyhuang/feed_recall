@@ -24,27 +24,7 @@ data:
     push_addr: '10.193.71.140:9090'
   redis:
     - table_name: 'appstore_update_push_new'
-      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
-      read_timeout: 0.2s
-      write_timeout: 0.2s
-    - table_name: 'rtrs_appstore_recomm_download'
-      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
-      read_timeout: 0.2s
-      write_timeout: 0.2s
-    - table_name: 'appstore_search_no_result'
-      addr: 'dm.recommend001.redis.vivo.lan:11103'
-      read_timeout: 0.2s
-      write_timeout: 0.2s
-    - table_name: 'apptag_taplist_cache_config'
-      addr: 'dm-recommend-appstore-v3-prd4.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd3.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd2.redis.dba.vivo.lan.:11166,dm-recommend-appstore-v3-prd1.redis.dba.vivo.lan.:11167,dm-recommend-appstore-v3-prd0.redis.dba.vivo.lan.:11166'
-      read_timeout: 0.2s
-      write_timeout: 0.2s
-    - table_name: 'rtrs_appstore_push_message_ranking'
-      addr: 'product-recall-03-prd4.redis.dba.vivo.lan:12222,product-recall-03-prd3.redis.dba.vivo.lan:12221,product-recall-03-prd2.redis.dba.vivo.lan:12221,product-recall-03-prd1.redis.dba.vivo.lan:12222,product-recall-03-prd0.redis.dba.vivo.lan:12221'
-      read_timeout: 0.2s
-      write_timeout: 0.2s
-    - table_name: 'da_appstore_detail_recall'
-      addr: 'prodcut-rec-prd3.redis.dba.vivo.lan.:11258'
+      addr: '127.0.0.1:6399'
       read_timeout: 0.2s
       write_timeout: 0.2s
 kratos:
