@@ -73,6 +73,7 @@ func updateDict(name string, isFirst bool)  {
 	defer hash.mu.Unlock()
 	index := atomic.LoadInt32(&hash.dictIdx)
 	dict := GetRegDict(hash.dictInfo.Name)
+	log.Infof("%v, %p", dict, dict)
 	log.Info("1111", dict)
 	dict.Init()
 	log.Info("1111", dict)

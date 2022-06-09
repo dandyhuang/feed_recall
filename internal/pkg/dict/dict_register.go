@@ -1,6 +1,7 @@
 package dict
 
 import (
+	"github.com/go-kratos/kratos/v2/log"
 	"strings"
 )
 
@@ -17,6 +18,7 @@ func RegisterDict(dict Dict) TypeRegister {
 	}
 	dictName := strings.ToLower(dict.Name())
 	typeReg[dictName] = dict
+	log.Infof("%v, %p", dict, dict)
 	return  typeReg
 }
 
