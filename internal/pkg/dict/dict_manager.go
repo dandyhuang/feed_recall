@@ -73,9 +73,7 @@ func updateDict(name string, isFirst bool)  {
 	defer hash.mu.Unlock()
 	index:=atomic.LoadInt32(&hash.dictIdx)
 	dict:=GetRegDict(hash.dictInfo.Name)
-	if isFirst {
-		dict.Init()
-	}
+	dict.Init()
 	dict.Load(hash.dictInfo.Path)
 	changeIndex := 1 - index
 	hash.opts.dict[changeIndex] = dict
