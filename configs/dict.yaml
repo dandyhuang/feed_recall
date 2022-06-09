@@ -1,5 +1,5 @@
 dicts:
   -
-    name: "imei_convert_list"
+    name: "gcms"
     class_name: "Str2StrVecDict"
     path: "/mnt/olps/dict_ps/app_recommend/imei_convert_list/model_root/base/imei_convert_list"
