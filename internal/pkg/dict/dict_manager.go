@@ -74,9 +74,9 @@ func updateDict(name string, isFirst bool)  {
 	index := atomic.LoadInt32(&hash.dictIdx)
 	dict := GetRegDict(hash.dictInfo.Name)
 	log.Infof("%v, %p", dict, &dict)
-	log.Info("1111", dict)
+	log.Info("11111111")
 	dict.Init()
-	log.Info("1111", dict)
+	log.Infof("2222%v, %p", dict, &dict)
 	dict.Load(hash.dictInfo.Path)
 	log.Info("1111", dict)
 	changeIndex := 1 - index
