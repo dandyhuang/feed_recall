@@ -29,6 +29,7 @@ func (d DictGcms) Init() error {
 }
 
 func (d DictGcms) Load(path string) bool {
+	log.Info("path", path)
 	d.dictData["dandy"] = "hello"
 	log.Info("implement me")
 	return true
