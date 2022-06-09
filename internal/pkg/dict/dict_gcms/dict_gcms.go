@@ -3,6 +3,7 @@ package dict_gcms
 import (
 	"data_proxy/internal/pkg/dict"
 	"errors"
+	"github.com/go-kratos/kratos/v2/log"
 )
 
 var (
@@ -11,36 +12,33 @@ var (
 )
 
 func init() {
-	dict.GetRegister().Set("gcms", new(DictGcms))
+	dict.RegisterDict(DictGcms{})
 }
-
 type DictGcms struct {
-	dict *dict.DictBase
 	dictData map[string] interface{}
 }
 
-func (d DictGcms) Init(conf string) error {
+
+func (d DictGcms) Name() string {
+	return "gcms"
+}
+
+func (d DictGcms) Init() error {
 	d.dictData = make(map[string] interface{})
-	d.dict = dict.NewDict()
-	d.dict.Init(conf)
-	d.dictData["hha"] = "dfds"
 	return nil
 }
 
-func (d DictGcms) Load() bool {
-	panic("implement me")
+func (d DictGcms) Load(path string) bool {
+	d.dictData["dandy"] = "hello"
+	log.Info("implement me")
+	return true
+}
+
+func (d DictGcms) Get() interface{} {
+	return d.dictData
 }
 
 func (d DictGcms) Close() {
-	panic("implement me")
+	log.Info("implement me")
 }
 
-func NewDict(conf string, opts ...dict.Option) dict.Dict {
-	dict:=dict.NewDict(opts...)
-	dict.Init(conf)
-
-	return &DictGcms{
-		dict: dict,
-		dictData: make(map[string] interface{}),
-	}
-}

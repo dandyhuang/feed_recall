@@ -12,6 +12,7 @@ type Option func(*options)
 type options struct {
 	decoder  Decoder
 	logger   log.Logger
+	dict  []Dict
 }
 
 type KeyValue struct {

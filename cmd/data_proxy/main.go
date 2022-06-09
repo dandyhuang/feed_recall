@@ -4,7 +4,7 @@ import (
 	"data_proxy/internal/conf"
 	logZap "data_proxy/internal/log"
 	"data_proxy/internal/pkg/dict"
-	"data_proxy/internal/pkg/dict/dict_gcms"
+	_ "data_proxy/internal/pkg/dict/dict_gcms"
 	"data_proxy/internal/pkg/stat"
 	"flag"
 	"github.com/go-kratos/kratos/v2"
@@ -17,7 +17,6 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
-	_ "data_proxy/internal/pkg/dict/dict_gcms"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"
@@ -111,15 +110,13 @@ func main() {
 		//"span.id", tracing.SpanID(),
 	)
 	dict.Init(log.NewHelper(logger))
-	gcms, err :=dict.GetRegister().Get("gcms")
-	if err != nil {
-		log.Error(err)
-	}
-	log.Info("111")
-	g:=gcms.(*dict_gcms.DictGcms)
+	dict:=dict.GetDict("gcms")
+	log.Info(dict.Get())
+
+
 	log.Info("222")
-	g.Init("../configs")
-	log.Info("err,", err, gcms)
+
+
 	app, cleanup, err := wireApp(bc.Server, bc.Data, &rc, logger)
 	if err != nil {
 		panic(err)
